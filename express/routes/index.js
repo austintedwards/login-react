@@ -6,8 +6,17 @@ var knex = require('../db/knex.js');
 /* GET home page. */
 router.get('/', function(req, res, next) {
     res.render('index', {
-        title: 'Galvanize Reads'
+        title: 'Login Server'
     });
+});
+
+router.get('/name/:name', function(req, res, next) {
+  let name = req.params.name;
+  knex('login')
+  .where('name', name)
+  .then(function(data){
+    console.log(data)
+  })
 });
 
 
