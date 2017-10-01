@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>server.test.js</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <link rel="stylesheet" media="all" href="../doc-style.css" />
+  <script src="../doc-filelist.js"></script>
+  <script>
+    var relativeDir = "../";
+    var thisFile = "test/server.test.js";
+    var defaultSidebar = true;
+  </script>
+  <script src="../doc-script.js"></script>
+
+</head>
+<body>
+  <div id="sidebar_wrapper">
+    <div id="sidebar_switch">
+      <span class="tree">Files</span>
+      <span class="headings">Headings</span>
+    </div>
+    <div id="tree"></div>
+    <div id="headings">
+
+    </div>
+  </div>
+  <div id="sidebar-toggle"></div>
+  <div id="container">
+    <div class="background highlight"></div>
+<table cellpadding="0" cellspacing="0">
+  <tbody>
+    
+      <tr>
+        <td class="docs">
+          <h1>server.test.js</h1>
+        </td>
+        <td class="code highlight"></td>
+      </tr>
+    
+    
+      <tr>
+        <td class="docs">
+          <div class="pilwrap">
+  <a class="pilcrow" href="#section-1" id="section-1"></a>
+</div>
+<p>test/server.test.js</p>
+
+        </td>
+        <td class="code highlight">
+          <pre class="javascript"><span class="hljs-keyword">const</span> exec = <span class="hljs-built_in">require</span>(<span class="hljs-string">'mz/child_process'</span>).exec;
+<span class="hljs-keyword">const</span> request = <span class="hljs-built_in">require</span>(<span class="hljs-string">'supertest-as-promised'</span>);
+<span class="hljs-keyword">const</span> expect = <span class="hljs-built_in">require</span>(<span class="hljs-string">'chai'</span>).expect;
+
+<span class="hljs-keyword">const</span> app = <span class="hljs-built_in">require</span>(<span class="hljs-string">'../server/app'</span>);
+
+describe(<span class="hljs-string">'builds application'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{
+  it(<span class="hljs-string">'builds to "build" directory'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{
+</pre>
+        </td>
+      </tr>
+    
+      <tr>
+        <td class="docs">
+          <div class="pilwrap">
+  <a class="pilcrow" href="#section-2" id="section-2"></a>
+</div>
+<p>Disable mocha time-out because this takes a lot of time</p>
+
+        </td>
+        <td class="code highlight">
+          <pre class="javascript">    <span class="hljs-keyword">this</span>.timeout(<span class="hljs-number">0</span>);
+
+</pre>
+        </td>
+      </tr>
+    
+      <tr>
+        <td class="docs">
+          <div class="pilwrap">
+  <a class="pilcrow" href="#section-3" id="section-3"></a>
+</div>
+<p>Run process</p>
+
+        </td>
+        <td class="code highlight">
+          <pre class="javascript">    <span class="hljs-keyword">return</span> exec(<span class="hljs-string">'npm run build'</span>);
+  });
+});
+
+describe(<span class="hljs-string">'express serving'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{
+  it(<span class="hljs-string">'responds to / with the index.html'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{
+    <span class="hljs-keyword">return</span> request(app)
+      .get(<span class="hljs-string">'/'</span>)
+      .expect(<span class="hljs-string">'Content-Type'</span>, /html/)
+      .expect(<span class="hljs-number">200</span>)
+      .then(<span class="hljs-function"><span class="hljs-params">res</span> =&gt;</span> expect(res.text).to.contain(<span class="hljs-string">'&lt;div id="root"&gt;&lt;/div&gt;'</span>));
+  });
+
+  it(<span class="hljs-string">'responds to favicon.icon request'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{
+    <span class="hljs-keyword">return</span> request(app)
+      .get(<span class="hljs-string">'/favicon.ico'</span>)
+      .expect(<span class="hljs-string">'Content-Type'</span>, <span class="hljs-string">'image/x-icon'</span>)
+      .expect(<span class="hljs-number">200</span>);
+  });
+
+  it(<span class="hljs-string">'responds to any route with the index.html'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{
+    <span class="hljs-keyword">return</span> request(app)
+      .get(<span class="hljs-string">'/foo/bar'</span>)
+      .expect(<span class="hljs-string">'Content-Type'</span>, /html/)
+      .expect(<span class="hljs-number">200</span>)
+      .then(<span class="hljs-function"><span class="hljs-params">res</span> =&gt;</span> expect(res.text).to.contain(<span class="hljs-string">'&lt;div id="root"&gt;&lt;/div&gt;'</span>));
+  });
+});
+
+</pre>
+        </td>
+      </tr>
+    
+  </tbody>
+</table>
+
+  </div>
+</body>
+</html>
