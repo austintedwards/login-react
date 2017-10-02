@@ -7,7 +7,6 @@ export class SignUp extends Component {
     super(props)
     this.state = {
       formValues: {
-		   type:'Mentee'
 	  }
     }
   }
@@ -24,7 +23,6 @@ export class SignUp extends Component {
   handleSubmit(event) {
     event.preventDefault();
     this.props.onSignUp(this.state.formValues)
-    console.log(this.state.formValues);
 
   }
 
@@ -57,19 +55,13 @@ export class SignUp extends Component {
                     <Label for="password">Confirm Password</Label>{' '}
                     <Input type="password" name="confirmPassword" placeholder="Confirm Password" value={this.state.formValues["confirmPassword"]} onChange={this.handleChange.bind(this)}/>
                 </FormGroup>
-                <FormGroup>
-                    <Label for="selectOption">I want to be</Label>
-                    <Input type="select" name="selectOption" id="selectOption" value={this.state.formValues["type"]} onChange={this.handleChange.bind(this)}>
-                      <option value="">Mentee</option>
-                      <option value="">Mentor</option>
-                      <option value="">Both</option>
-                    </Input>
-                </FormGroup>
+
                 {' '}
               </div>
+              <Button>Submit</Button>
+
             </Form>
 
-              <Button>Submit</Button>
       </div>
 
     )

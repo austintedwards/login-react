@@ -22,12 +22,19 @@ export default class Login extends Component {
     console.log("signin", member);
 
     axios.get('http://localhost:8000/name/Sally').then(function(response) {
-      console.log("response",response.data[0]);
+      console.log("response", response.data[0]);
     })
 
   }
   signUp(member) {
     console.log("signUp", member);
+    axios.post(`http://localhost:8000/signup`, member)
+    .then(function(response) {
+      console.log("posted")
+    })
+    .catch(function(error) {
+      console.log(error);
+    });
   }
 
   render() {

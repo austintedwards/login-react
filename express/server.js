@@ -1,10 +1,13 @@
-var express = require("express");
-var app = express();
-var bodyParser = require("body-parser");
+const express = require("express");
+const app = express();
+const bodyParser = require("body-parser");
+const cors = require('cors')
 
-var index = require('./routes/index');
-var login = require('./routes/login');
 
+const index = require('./routes/index');
+const login = require('./routes/login');
+
+app.use(cors())
 app.use(bodyParser.json());
 
 app.use(bodyParser.urlencoded({
