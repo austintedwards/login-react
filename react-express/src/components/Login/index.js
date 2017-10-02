@@ -1,6 +1,8 @@
 // src/components/Login/index.js
 import React, {PropTypes, Component} from 'react';
-import { Button, ButtonGroup } from 'reactstrap'
+import {Button, ButtonGroup} from 'reactstrap';
+import axios from 'axios';
+
 import classnames from 'classnames';
 import {SignUp} from "./SignUp";
 import {SignIn} from "./SignIn";
@@ -19,6 +21,9 @@ export default class Login extends Component {
   signIn(member) {
     console.log("signin", member);
 
+    axios.get('http://localhost:8000/name/Sally').then(function(response) {
+      console.log("response",response.data[0]);
+    })
 
   }
   signUp(member) {
