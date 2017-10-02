@@ -1,6 +1,7 @@
 // src/components/App/index.js
 import React, { PropTypes, Component } from 'react';
 import classnames from 'classnames';
+import Login from '../Login'
 
 import logo from './logo.svg';
 import './style.css';
@@ -21,6 +22,7 @@ class App extends Component {
         <p className="App-intro">
           To get started, edit <code>src/App.js</code> and save to reload.
         </p>
+        <Login />
       </div>
     );
   }
